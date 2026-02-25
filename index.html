@@ -49,43 +49,47 @@
 </head>
 <body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen transition-colors duration-300">
     <div class="flex flex-col min-h-screen w-full">
-        <header class="sticky top-0 z-50 bg-white/60 dark:bg-background-dark backdrop-blur-xl border-slate-200 dark:border-slate-800 px-6 py-4 lg:px-12">
-            <div class="max-w-7xl mx-auto flex items-center justify-between relative">
-                
-                <div class="flex items-center gap-3 cursor-pointer group z-10" onclick="location.reload()">
-                    <div class="h-10 w-auto flex items-center justify-center overflow-hidden rounded shadow-sm group-hover:brightness-110 transition-all">
-                        <img src="logocekscam.png" alt="Logo AwasKetipu" class="w-full h-full object-contain">
+        <header class="sticky top-0 z-50 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 px-6 py-4">
+            <div class="max-w-7xl mx-auto flex items-center justify-between">
+                <div class="flex items-center gap-3 cursor-pointer group" onclick="location.reload()">
+                    <div class="h-9 w-auto flex items-center justify-center overflow-hidden rounded group-hover:scale-105 transition-all">
+                        <img src="logocekscam.png" alt="Logo CekScam" class="w-full h-full object-contain">
                     </div>
                 </div>
                 
-                <nav class="hidden md:flex items-center gap-1 absolute left-1/2 -translate-x-1/2 bg-slate-100 dark:bg-slate-800/50 p-1 rounded-xl">
-                    <button onclick="showPage('chat')" id="nav-chat" 
-                        class="px-5 py-2 rounded-lg text-xs font-extrabold uppercase tracking-widest bg-primary text-white shadow-sm transition-all">
-                        Analisis Chat
-                    </button>
-                    <button onclick="showPage('link')" id="nav-link" 
-                        class="px-5 py-2 rounded-lg text-xs font-medium uppercase tracking-widest text-slate-500 hover:text-primary transition-all">
-                        Verifikasi Link
-                    </button>
-                </nav>
-
-                <div class="flex items-center gap-3 z-10">
-                    <button onclick="document.documentElement.classList.toggle('dark')" 
-                        class="w-10 h-10 flex items-center justify-center rounded-lg border border-slate-200 dark:border-slate-800 text-slate-500 hover:border-primary transition-all bg-white dark:bg-slate-900">
-                        <span class="material-symbols-outlined dark:hidden text-xl">dark_mode</span>
-                        <span class="material-symbols-outlined hidden dark:block text-yellow-400 text-xl">light_mode</span>
-                    </button>
-                </div>
+                <button onclick="document.documentElement.classList.toggle('dark')" 
+                    class="w-10 h-10 flex items-center justify-center rounded-xl border border-slate-200 dark:border-slate-800 text-slate-500 bg-white dark:bg-slate-900 shadow-sm">
+                    <span class="material-symbols-outlined dark:hidden text-xl">dark_mode</span>
+                    <span class="material-symbols-outlined hidden dark:block text-yellow-400 text-xl">light_mode</span>
+                </button>
             </div>
         </header>
 
         <main class="flex-1 max-w-7xl mx-auto w-full px-6 py-8 lg:py-12 flex flex-col gap-12">
-            <section class="flex flex-col items-center text-center gap-4">
-                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-medium uppercase tracking-wider">
+            <section class="flex flex-col items-center text-center gap-6">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 text-primary text-[10px] font-bold uppercase tracking-widest">
                     <span class="material-symbols-outlined text-sm">bolt</span> AI-Powered Protection
                 </div>
-                <h1 class="text-4xl md:text-6xl font-semibold tracking-tight text-slate-900 dark:text-white max-w-3xl leading-[1.1]">Awas Ketipu!</h1>
-                <p class="text-lg text-slate-500 dark:text-slate-400 max-w-2xl font-medium">Lawan penipu dengan AI dalam hitungan detik. Kami menganalisis pola penipuan secara real-time.</p>
+                
+                <div class="space-y-2">
+                    <h1 class="text-4xl md:text-6xl font-black tracking-tight text-slate-900 dark:text-white leading-[1.1]">Awas Ketipu!</h1>
+                    <p class="text-base md:text-lg text-slate-500 dark:text-slate-400 max-w-2xl font-medium px-4">
+                        Lawan penipu dengan AI dalam hitungan detik. Kami menganalisis pola penipuan secara real-time.
+                    </p>
+                </div>
+
+                <div class="w-full flex justify-center px-4">
+                    <nav class="flex items-center gap-1 bg-white dark:bg-slate-900 p-1.5 rounded-2xl shadow-xl border border-slate-100 dark:border-slate-800 w-full max-w-[340px] md:max-w-md transition-all">
+                        <button onclick="showPage('chat')" id="nav-chat" 
+                            class="flex-1 px-4 py-3 rounded-xl text-[10px] md:text-xs font-black uppercase tracking-widest bg-primary text-white shadow-lg shadow-primary/20 transition-all active:scale-95 whitespace-nowrap text-center">
+                            Analisis Chat
+                        </button>
+                        <button onclick="showPage('link')" id="nav-link" 
+                            class="flex-1 px-4 py-3 rounded-xl text-[10px] md:text-xs font-black uppercase tracking-widest text-slate-400 hover:text-primary transition-all active:scale-95 whitespace-nowrap text-center">
+                            Verifikasi Link
+                        </button>
+                    </nav>
+                </div>
             </section>
 
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
