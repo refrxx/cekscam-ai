@@ -8,6 +8,8 @@ const app = express();
 const upload = multer({ storage: multer.memoryStorage() });
 
 app.use(express.json());
+// Middleware tambahan agar server bisa membaca field honeypot dari form data
+app.use(express.urlencoded({ extended: true })); 
 app.use(express.static(__dirname));
 
 // AMAN: Menggunakan API Key dari environment variable
@@ -17,6 +19,13 @@ const groq = new Groq({
 
     app.post('/analyze', upload.single('image'), async (req, res) => {
         try {
+            // --- PROTEKSI BOT (HONEYPOT) ---
+            if (req.body.honeypot_field) {
+                console.log("SADIS: Bot terdeteksi mencoba spam gambar!");
+                return res.status(403).json({ error: "Bot detected" });
+            }
+            // ------------------------------
+
             if (!req.file) return res.status(400).send('Fotonya mana, Pak?');
 
             const { data: { text } } = await Tesseract.recognize(req.file.buffer, 'ind');
@@ -59,6 +68,13 @@ const groq = new Groq({
 
     app.post('/analyze-link', async (req, res) => {
         try {
+            // --- PROTEKSI BOT (HONEYPOT) ---
+            if (req.body.honeypot_field) {
+                console.log("SADIS: Bot terdeteksi mencoba spam link!");
+                return res.status(403).json({ error: "Bot detected" });
+            }
+            // ------------------------------
+
             const { url } = req.body;
             if (!url) return res.status(400).json({ error: "Link kosong, Pak!" });
 

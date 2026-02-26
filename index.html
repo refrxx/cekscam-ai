@@ -27,25 +27,17 @@
     <style>
         body { font-family: 'Geist', sans-serif; }
         .material-symbols-outlined { font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
-        /* Animasi Masuk */
+        
         @keyframes zoomInCenter {
-            0% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
-            100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+            0% { opacity: 0; transform: scale(0.9); }
+            100% { opacity: 1; transform: scale(1); }
         }
-
-        /* Animasi Keluar */
         @keyframes zoomOutCenter {
-            0% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-            100% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+            0% { opacity: 1; transform: scale(1); }
+            100% { opacity: 0; transform: scale(0.9); }
         }
-
-        .animate-zoom-center {
-            animation: zoomInCenter 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-        }
-
-        .animate-zoom-out {
-            animation: zoomOutCenter 0.2s ease-in forwards;
-        }
+        .animate-zoom-center { animation: zoomInCenter 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
+        .animate-zoom-out { animation: zoomOutCenter 0.2s ease-in forwards; }
     </style>
 </head>
 <body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen transition-colors duration-300">
@@ -54,15 +46,15 @@
             <div class="max-w-7xl mx-auto flex items-center justify-between">
                 <div class="flex items-center gap-3 cursor-pointer group" onclick="location.reload()">
                     <div class="h-9 w-auto flex items-center justify-center overflow-hidden rounded group-hover:scale-105 transition-all">
-                        <img src="logocekscam.png" alt="Logo CekScam" class="w-full h-full object-contain">
+                        <img src="logoawasketipu.png" alt="Logo AWASKETIPU" class="w-full h-full object-contain">
                     </div>
                 </div>
 
                 <div class="flex items-center gap-2 md:gap-3">
                     <a href="https://saweria.co/rglabs" target="_blank" 
-                    class="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-orange-500 hover:bg-orange-600 text-white text-[9px] md:text-[10px] font-bold uppercase tracking-wider transition-all shadow-sm shadow-orange-200 active:scale-95">
-                        <span class="material-symbols-outlined text-sm md:text-base">volunteer_activism</span>
-                        <span>Donasi</span>
+                       class="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-slate-800 hover:bg-orange-600 text-white text-[9px] md:text-[10px] font-bold uppercase tracking-wider transition-all hover:shadow-lg hover:shadow-orange-500/40 active:scale-95">
+                        <span class="material-symbols-outlined text-sm md:text-base">coffee</span>
+                        <span>Traktir Kopi</span>
                     </a>
                     
                     <button onclick="document.documentElement.classList.toggle('dark')" 
@@ -71,13 +63,12 @@
                         <span class="material-symbols-outlined hidden dark:block text-yellow-400 text-lg md:text-xl">light_mode</span>
                     </button>
                 </div>            
-                
             </div>
         </header>
 
         <main class="flex-1 max-w-7xl mx-auto w-full px-6 py-8 lg:py-12 flex flex-col gap-12">
             <section class="flex flex-col items-center text-center gap-6">
-                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-400/10 text-primary/ text-[10px] font-semibold uppercase">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-400/10 text-primary text-[10px] font-semibold uppercase">
                     <span class="material-symbols-outlined text-sm">auto_awesome</span> 
                     Powered by Meta Llama 3.3
                 </div>
@@ -104,14 +95,11 @@
             </section>
 
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-                
                 <div class="lg:col-span-7 flex flex-col gap-6">
                     <div id="page-chat" class="bg-white dark:bg-slate-900 rounded-3xl p-8 flex flex-col gap-6 shadow-sm border border-slate-200 dark:border-slate-800 transition-all">
-                        <div class="flex items-center justify-between">
-                            <h3 class="text-xl font-medium flex items-center gap-2">
-                                <span class="material-symbols-outlined text-primary">screenshot</span> Analisis Screenshot
-                            </h3>
-                        </div>
+                        <h3 class="text-xl font-medium flex items-center gap-2">
+                            <span class="material-symbols-outlined text-primary">screenshot</span> Analisis Screenshot
+                        </h3>
                         <label for="imageInput" class="relative group cursor-pointer">
                             <div class="flex flex-col items-center justify-center gap-4 border-4 border-dashed border-slate-100 dark:border-slate-800 rounded-2xl py-12 px-10 transition-all group-hover:border-primary/40 bg-slate-50/50 dark:bg-slate-800/20">
                                 <div class="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center text-primary">
@@ -120,12 +108,14 @@
                                 <div class="text-center">
                                     <p id="fileName" class="text-lg font-medium text-slate-800 dark:text-slate-200">Upload Bukti Chat</p>
                                     <p class="text-sm text-slate-500 font-medium">Klik untuk memilih file screenshot</p>
-                                    
                                     <span class="text-xs font-medium text-slate-400">JPG, PNG up to 10MB</span>
                                 </div>
                             </div>
                             <input type="file" id="imageInput" class="hidden" accept="image/*" onchange="updateFileName()"/>
                         </label>
+                        <div style="display:none;">
+                            <input type="text" id="honeypot_field" name="honeypot_field" tabindex="-1" autocomplete="off">
+                        </div>                        
                         <button onclick="checkScam()" id="btnCek" 
                             class="w-full py-3.5 rounded-2xl bg-primary text-white text-sm font-bold uppercase tracking-widest hover:brightness-110 active:scale-[0.98] transition-all flex items-center justify-center gap-3">
                             <span class="material-symbols-outlined text-lg">analytics</span> Analisis Sekarang
@@ -141,7 +131,7 @@
                         </h3>
                         <div class="relative">
                             <span class="absolute left-4 top-1/2 -translate-y-1/2 material-symbols-outlined text-slate-400">search</span>
-                            <input type="text" id="urlInput" class="w-full pl-12 pr-4 py-4 rounded-xl bg-slate-50 dark:bg-slate-800 border-none ring-1 ring-slate-200 dark:ring-slate-700 focus:ring-2 focus:ring-primary text-sm" placeholder="Masukkan URL mencurigakan (contoh: bit.ly/undian-gratis)"/>
+                            <input type="text" id="urlInput" class="w-full pl-12 pr-4 py-4 rounded-xl bg-slate-50 dark:bg-slate-800 border-none ring-1 ring-slate-200 dark:ring-slate-700 focus:ring-2 focus:ring-primary text-sm font-medium" placeholder="Masukkan URL mencurigakan..."/>
                         </div>
                         <button onclick="checkLinkScam()" id="btnCekLink" 
                             class="w-full py-3.5 rounded-2xl bg-primary text-white text-sm font-bold uppercase tracking-widest hover:brightness-110 active:scale-[0.98] transition-all flex items-center justify-center gap-3">
@@ -155,7 +145,6 @@
 
                 <div class="lg:col-span-5 flex flex-col gap-6">
                     <h3 class="text-xl font-medium px-2">Hasil Analisis</h3>
-                    
                     <div id="resultArea" class="hidden animate-in fade-in slide-in-from-right-4 duration-500">
                         <div id="statusContainer" class="rounded-3xl p-8 flex flex-col gap-6 shadow-lg">
                             <div class="flex items-start justify-between">
@@ -171,7 +160,7 @@
                                 <div id="skorBadge" class="bg-white px-4 py-2 rounded-full text-lg font-semibold shadow-sm">--%</div>
                             </div>
                             <p id="alasan" class="text-base leading-relaxed font-medium border-t border-white/20 pt-6"></p>
-                            <div class="bg-black/10 p-6 rounded-2xl border-white">
+                            <div class="bg-black/10 p-6 rounded-2xl">
                                 <p class="text-[10px] uppercase font-semibold tracking-widest mb-2 opacity-80">Anjuran Tindakan:</p>
                                 <p id="anjuran" class="text-sm font-medium"></p>
                             </div>
@@ -187,12 +176,9 @@
 
             <section class="pt-12 border-t border-slate-200 dark:border-slate-800 flex flex-col gap-10">
                 <div class="flex flex-col items-center text-center gap-2">
-                    <h3 class="text-xl md:text-2xl font-bold uppercase text-slate-900 dark:text-white">
-                        How It Works
-                    </h3>
+                    <h3 class="text-xl md:text-2xl font-bold uppercase text-slate-900 dark:text-white">How It Works</h3>
                     <div class="w-12 h-1 bg-primary rounded-full"></div>
                 </div>
-
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
                     <div class="flex flex-col items-center md:items-start text-center md:text-left gap-4 group">
                         <div class="w-14 h-14 rounded-2xl bg-primary/10 text-primary flex items-center justify-center transition-all group-hover:bg-primary group-hover:text-white shadow-sm">
@@ -200,229 +186,289 @@
                         </div>
                         <div class="space-y-1">
                             <h4 class="font-bold text-sm uppercase">1. Input Data</h4>
-                            <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed max-w-[250px]">
-                                Unggah bukti chat atau tempel link yang mencurigakan ke sistem.
-                            </p>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed max-w-[250px] font-medium">Unggah bukti chat atau tempel link yang mencurigakan ke sistem.</p>
                         </div>
                     </div>
-
                     <div class="flex flex-col items-center md:items-start text-center md:text-left gap-4 group">
                         <div class="w-14 h-14 rounded-2xl bg-primary/10 text-primary flex items-center justify-center transition-all group-hover:bg-primary group-hover:text-white shadow-sm">
                             <span class="material-symbols-outlined text-3xl">psychology</span>
                         </div>
                         <div class="space-y-1">
                             <h4 class="font-bold text-sm uppercase">2. Proses AI</h4>
-                            <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed max-w-[250px]">
-                                Agent AI menganalisis pola penipuan dan kredibilitas data secara mendalam.
-                            </p>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed max-w-[250px] font-medium">Agent AI menganalisis pola penipuan dan kredibilitas data secara mendalam.</p>
                         </div>
                     </div>
-
                     <div class="flex flex-col items-center md:items-start text-center md:text-left gap-4 group">
                         <div class="w-14 h-14 rounded-2xl bg-primary/10 text-primary flex items-center justify-center transition-all group-hover:bg-primary group-hover:text-white shadow-sm">
                             <span class="material-symbols-outlined text-3xl">verified_user</span>
                         </div>
                         <div class="space-y-1">
                             <h4 class="font-bold text-sm uppercase">3. Hasil Instan</h4>
-                            <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed max-w-[250px]">
-                                Dapatkan skor risiko dan rekomendasi keamanan dalam hitungan detik.
-                            </p>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed max-w-[250px] font-medium">Dapatkan skor risiko dan rekomendasi keamanan dalam hitungan detik.</p>
                         </div>
                     </div>
                 </div>
             </section>
         </main>
 
-        <footer class="bg-white dark:bg-slate-950 border-t border-slate-200 dark:border-slate-900 mt-20">
-            <div class="max-w-7xl mx-auto px-6 py-10">
-                <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
-                    <div class="space-y-3">
+        <footer class="bg-white dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 mt-20">
+            <div class="max-w-7xl mx-auto px-6 py-12">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+                    <div class="col-span-1 md:col-span-2 space-y-4">
                         <div class="flex items-center gap-2">
-                            <span class="material-symbols-outlined text-primary font-medium">verified_user</span>
-                            <span class="text-sm font-semibold uppercase tracking-widest">AWASKETIPU.ID</span>
+                            <span class="material-symbols-outlined text-primary font-bold">verified_user</span>
+                            <span class="text-sm font-bold uppercase tracking-tight">AWASKETIPU.ID</span>
                         </div>
-                        <p class="text-xs font-medium text-slate-500 max-w-xs leading-relaxed">Platform kecerdasan buatan untuk mendeteksi penipuan digital secara real-time. Melindungi masyarakat dari ancaman siber.</p>
+                        <p class="text-xs text-slate-500 max-w-sm leading-relaxed font-medium">
+                            Platform perlindungan masyarakat dari penipuan digital berbasis AI. Built with ♥ untuk Indonesia.
+                        </p>
                     </div>
-                    
+                    <div class="space-y-4">
+                        <h5 class="text-[10px] font-bold uppercase tracking-widest text-slate-400">Layanan</h5>
+                        <ul class="space-y-2 text-xs font-bold uppercase">
+                            <li><button onclick="showPage('chat')" class="hover:text-primary transition-colors">Analisis Chat</button></li>
+                            <li><button onclick="showPage('link')" class="hover:text-primary transition-colors">Verifikasi Link</button></li>
+                        </ul>
+                    </div>
+                    <div class="space-y-4">
+                        <h5 class="text-[10px] font-bold uppercase tracking-widest text-slate-400">Informasi</h5>
+                        <ul class="space-y-2 text-xs font-bold uppercase">
+                            <li><button onclick="openInfoModal('privacy')" class="hover:text-primary transition-colors">Privacy Policy</button></li>
+                            <li><button onclick="openInfoModal('tos')" class="hover:text-primary transition-colors">Terms of Service</button></li>
+                        </ul>
+                    </div>
                 </div>
-                
-                <div class="mt-10 pt-6 border-t border-slate-100 dark:border-slate-900 flex flex-col sm:flex-row justify-between items-center gap-6">
-                    <p class="text-[10px] font-medium text-slate-400 uppercase tracking-widest text-center sm:text-left">
-                        © 2026 RG! AI LABS. Built with ♥ untuk Indonesia.
-                    </p>
 
-                    <div class="flex items-center gap-2">
-                            <div class="h-6 w-auto opacity-70 hover:opacity-100 transition-opacity flex items-center">
-                                <img src="rglabsfooter.png" alt="RGLABS Logo" class="h-full w-auto object-contain dark:hidden">
-                                
-                                <img src="rglabsfooterdark.png" alt="RGLABS Logo" class="h-full w-auto object-contain hidden dark:block">
+                <div class="mt-12 pt-8 border-t border-slate-100 dark:border-slate-900 flex flex-col sm:flex-row justify-between items-center gap-6">
+                    <p class="text-[10px] font-semibold text-slate-400 uppercase text-center sm:text-left">
+                        © 2026 FIGHTBACK AILABS Project.
+                    </p>
+                    <div class="flex items-center gap-6">
+                        <div class="flex items-center gap-4 border-r border-slate-200 dark:border-slate-800 pr-6 grayscale opacity-40 hover:opacity-100 transition-all">
+                            <div class="group relative flex items-center">
+                                <span class="material-symbols-outlined text-[18px]">shield_lock</span>
+                                <span class="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 px-2 py-1 bg-slate-800 text-white text-[8px] rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none font-semibold uppercase">SSL Secure</span>
                             </div>
+                            <div class="group relative flex items-center">
+                                <span class="material-symbols-outlined text-[18px]">cloud_done</span>
+                                <span class="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 px-2 py-1 bg-slate-800 text-white text-[8px] rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none font-semibold uppercase">Cloudflare Protected</span>
+                            </div>
+                            <div class="group relative flex items-center">
+                                <span class="material-symbols-outlined text-[18px]">memory</span>
+                                <span class="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 px-2 py-1 bg-slate-800 text-white text-[8px] rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none font-semibold uppercase">Powered by Meta Llama AI</span>
+                            </div>
+                        </div>
+                        <div class="h-6 w-auto opacity-70 hover:opacity-100 transition-opacity flex items-center">
+                            <img src="fightback.png" alt="FIGHTBACK Logo" class="h-full w-auto object-contain dark:hidden">
+                            <img src="fightbackdark.png" alt="FIGHTBACK Logo" class="h-full w-auto object-contain hidden dark:block">
+                        </div>
                     </div>
                 </div>
             </div>
         </footer>
     </div>
 
-<script>
-    function showPage(page) {
-        const pChat = document.getElementById('page-chat');
-        const pLink = document.getElementById('page-link');
-        const nChat = document.getElementById('nav-chat');
-        const nLink = document.getElementById('nav-link');
-
-        // Gunakan font-bold dan tracking-tighter agar rapat dan rapi
-        const activeClass = "flex-1 px-4 py-3 rounded-xl text-[12px] md:text-sm font-bold uppercase bg-primary text-white shadow-lg shadow-primary/20 transition-all active:scale-95 text-center";
-        const inactiveClass = "flex-1 px-4 py-3 rounded-xl text-[12px] md:text-sm font-bold uppercase text-slate-400 hover:text-primary transition-all active:scale-95 text-center";
-
-        if(page === 'chat') {
-            pChat.classList.remove('hidden'); 
-            pLink.classList.add('hidden');
-            nChat.className = activeClass;
-            nLink.className = inactiveClass;
-        } else {
-            pChat.classList.add('hidden'); 
-            pLink.classList.remove('hidden');
-            nLink.className = activeClass;
-            nChat.className = inactiveClass;
-        }
-    }
-
-    function updateFileName() {
-        const input = document.getElementById('imageInput');
-        const label = document.getElementById('fileName');
-        const file = input.files[0];
-
-        if (file) {
-            const reader = new FileReader();
-            
-            // Saat file selesai dibaca, kita tampilkan gambarnya
-            reader.onload = function(e) {
-                label.innerHTML = `
-                    <div class="flex flex-col items-center gap-4">
-                        <img src="${e.target.result}" class="max-h-64 rounded-xl shadow-md border-2 border-primary/20 object-contain">
-                        <p class="text-primary font-medium break-all text-sm px-4">${file.name}</p>
-                    </div>
-                `;
-            }
-            
-            reader.readAsDataURL(file);
-        }
-    }
-
-    function displayResult(data) {
-        document.getElementById('placeholderResult').classList.add('hidden');
-        const area = document.getElementById('resultArea');
-        const container = document.getElementById('statusContainer');
-        const iconBg = document.getElementById('statusIconBg'); // Container ikon
-        const icon = document.getElementById('statusIcon');
-        const badge = document.getElementById('skorBadge');
-        const skor = parseInt(data.skor_risiko) || 0;
-
-        area.classList.remove('hidden');
-
-        container.className = "rounded-3xl p-8 flex flex-col gap-6 shadow-lg text-white transition-all duration-500";
-        iconBg.className = "p-3 rounded-2xl text-white flex items-center justify-center shadow-inner transition-all";
-
-        if(skor >= 70) {
-            container.classList.add('bg-red-600', 'border-red-800');
-            iconBg.classList.add('bg-red-800'); // Merah gelap untuk ikon
-            icon.innerText = "warning";
-            document.getElementById('status').innerText = "Terdeteksi Penipuan";
-            badge.className = "bg-white px-4 py-2 rounded-full text-lg font-semibold shadow-sm text-red-600";
-        } else if(skor >= 40) {
-            container.classList.add('bg-yellow-500', 'border-yellow-700');
-            iconBg.classList.add('bg-yellow-700'); // Kuning gelap untuk ikon
-            icon.innerText = "gpp_maybe";
-            document.getElementById('status').innerText = "Waspada Anomali";
-            badge.className = "bg-white px-4 py-2 rounded-full text-lg font-semibold shadow-sm text-yellow-600";
-        } else {
-            container.classList.add('bg-[#1ca800]', 'border-emerald-800');
-            iconBg.classList.add('bg-[#19690b]'); // Hijau gelap untuk ikon
-            icon.innerText = "verified";
-            document.getElementById('status').innerText = "Terlihat Aman";
-            badge.className = "bg-white px-4 py-2 rounded-full text-lg font-semibold shadow-sm text-emerald-600";
-        }
-
-        badge.innerText = skor + "%";
-        document.getElementById('alasan').innerText = data.alasan;
-        document.getElementById('anjuran').innerText = data.anjuran;
-    }
-
-function showToast(message) {
-    const toast = document.getElementById('toast');
-    const msg = document.getElementById('toastMessage');
-    
-    msg.innerText = message;
-    
-    // 1. Munculkan dan pasang animasi masuk
-    toast.classList.remove('hidden', 'animate-zoom-out');
-    toast.classList.add('animate-zoom-center');
-    
-    // 2. Tunggu sebentar (misal 2.5 detik) lalu pasang animasi keluar
-    setTimeout(() => {
-        toast.classList.remove('animate-zoom-center');
-        toast.classList.add('animate-zoom-out');
-        
-        // 3. Setelah animasi keluar selesai (0.2s), baru sembunyikan total
-        setTimeout(() => {
-            toast.classList.add('hidden');
-        }, 200); 
-    }, 2500);
-}
-
-    // Fungsi Analisis Gambar
-    async function checkScam() {
-        const file = document.getElementById('imageInput').files[0];
-        if(!file) return showToast("Pilih fotonya dulu ya!");
-        
-        const btn = document.getElementById('btnCek');
-        btn.disabled = true; 
-        btn.innerHTML = `<span class="material-symbols-outlined animate-spin">sync</span> MENGANALISIS...`;
-
-        const formData = new FormData();
-        formData.append('image', file);
-        try {
-            const res = await fetch('/analyze', { method: 'POST', body: formData });
-            displayResult(await res.json());
-        } catch(e) { 
-            showToast("Server error!"); 
-        } finally {
-            btn.disabled = false; 
-            btn.innerHTML = `<span class="material-symbols-outlined">analytics</span> Analisis Sekarang`;
-        }
-    }
-
-    // Fungsi Analisis Link
-    async function checkLinkScam() {
-        const url = document.getElementById('urlInput').value;
-        if(!url) return showToast("Masukkan URL!");
-        
-        const btn = document.getElementById('btnCekLink');
-        btn.disabled = true; 
-        btn.innerHTML = `<span class="material-symbols-outlined animate-spin">progress_activity</span> MEMBEDAH...`;
-
-        try {
-            const res = await fetch('/analyze-link', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ url })
-            });
-            displayResult(await res.json());
-        } catch(e) { 
-            showToast("Server error!"); 
-        } finally {
-            btn.disabled = false; 
-            btn.innerHTML = `<span class="material-symbols-outlined">travel_explore</span> Periksa Link`;
-        }
-    }
-</script>
     <div id="toast" class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[100] hidden">
-        <div class="bg-yellow-400 backdrop-blur-md text-slate-900 px-8 py-5 rounded-2xl shadow-[0_0_50px_rgba(0,0,0,0.3)] flex flex-col items-center gap-4 border border-yellow-500 min-w-[300px]">
+        <div class="bg-yellow-400 text-slate-900 px-8 py-5 rounded-2xl shadow-[0_0_50px_rgba(0,0,0,0.3)] flex flex-col items-center gap-4 border border-yellow-500 min-w-[300px]">
             <div class="w-12 h-12 rounded-full bg-yellow-300 flex items-center justify-center">
                 <span class="material-symbols-outlined text-slate-900 text-3xl">warning</span>
             </div>
-            <p id="toastMessage" class="text-sm font-semibold tracking-wide text-center"></p>
+            <p id="toastMessage" class="text-sm font-semibold text-center"></p>
         </div>
     </div>
+
+    <div id="infoModal" class="fixed inset-0 z-[100] hidden flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
+        <div class="bg-white dark:bg-slate-900 w-full max-w-2xl rounded-3xl shadow-2xl overflow-hidden animate-zoom-center">
+            <div class="p-6 border-b border-slate-100 dark:border-slate-800 flex justify-between items-center">
+                <h3 id="modalTitle" class="font-bold uppercase text-lg">Informasi</h3>
+                <button onclick="closeInfoModal()" class="material-symbols-outlined text-slate-400 hover:text-red-500 transition-colors">close</button>
+            </div>
+            <div id="modalContent" class="p-8 max-h-[60vh] overflow-y-auto text-sm leading-relaxed text-slate-600 dark:text-slate-400 font-medium normal-case"></div>
+            <div class="p-4 bg-slate-50 dark:bg-slate-800/50 flex justify-end">
+                <button onclick="closeInfoModal()" class="px-6 py-2 bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 rounded-xl text-[10px] font-bold uppercase transition-all">Tutup</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showPage(page) {
+            const pChat = document.getElementById('page-chat');
+            const pLink = document.getElementById('page-link');
+            const nChat = document.getElementById('nav-chat');
+            const nLink = document.getElementById('nav-link');
+
+            const activeClass = "flex-1 px-4 py-3 rounded-xl text-[12px] md:text-sm font-bold uppercase bg-primary text-white shadow-lg shadow-primary/20 transition-all active:scale-95 text-center";
+            const inactiveClass = "flex-1 px-4 py-3 rounded-xl text-[12px] md:text-sm font-bold uppercase text-slate-400 hover:text-primary transition-all active:scale-95 text-center";
+
+            if(page === 'chat') {
+                pChat.classList.remove('hidden'); 
+                pLink.classList.add('hidden');
+                nChat.className = activeClass;
+                nLink.className = inactiveClass;
+            } else {
+                pChat.classList.add('hidden'); 
+                pLink.classList.remove('hidden');
+                nLink.className = activeClass;
+                nChat.className = inactiveClass;
+            }
+        }
+
+        function updateFileName() {
+            const input = document.getElementById('imageInput');
+            const label = document.getElementById('fileName');
+            const file = input.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    label.innerHTML = `
+                        <div class="flex flex-col items-center gap-4">
+                            <img src="${e.target.result}" class="max-h-64 rounded-xl shadow-md border-2 border-primary/20 object-contain">
+                            <p class="text-primary font-medium break-all text-sm px-4">${file.name}</p>
+                        </div>
+                    `;
+                }
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function displayResult(data) {
+            document.getElementById('placeholderResult').classList.add('hidden');
+            const area = document.getElementById('resultArea');
+            const container = document.getElementById('statusContainer');
+            const iconBg = document.getElementById('statusIconBg'); 
+            const icon = document.getElementById('statusIcon');
+            const badge = document.getElementById('skorBadge');
+            const skor = parseInt(data.skor_risiko) || 0;
+
+            area.classList.remove('hidden');
+            container.className = "rounded-3xl p-8 flex flex-col gap-6 shadow-lg text-white transition-all duration-500";
+            iconBg.className = "p-3 rounded-2xl text-white flex items-center justify-center shadow-inner transition-all";
+
+            if(skor >= 70) {
+                container.classList.add('bg-red-600', 'border-red-800');
+                iconBg.classList.add('bg-red-800'); 
+                icon.innerText = "warning";
+                document.getElementById('status').innerText = "Terdeteksi Penipuan";
+                badge.className = "bg-white px-4 py-2 rounded-full text-lg font-semibold shadow-sm text-red-600";
+            } else if(skor >= 40) {
+                container.classList.add('bg-yellow-500', 'border-yellow-700');
+                iconBg.classList.add('bg-yellow-700'); 
+                icon.innerText = "gpp_maybe";
+                document.getElementById('status').innerText = "Waspada Anomali";
+                badge.className = "bg-white px-4 py-2 rounded-full text-lg font-semibold shadow-sm text-yellow-600";
+            } else {
+                container.classList.add('bg-[#1ca800]', 'border-emerald-800');
+                iconBg.classList.add('bg-[#19690b]'); 
+                icon.innerText = "verified";
+                document.getElementById('status').innerText = "Terlihat Aman";
+                badge.className = "bg-white px-4 py-2 rounded-full text-lg font-semibold shadow-sm text-emerald-600";
+            }
+
+            badge.innerText = skor + "%";
+            document.getElementById('alasan').innerText = data.alasan;
+            document.getElementById('anjuran').innerText = data.anjuran;
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const msg = document.getElementById('toastMessage');
+            msg.innerText = message;
+            toast.classList.remove('hidden', 'animate-zoom-out');
+            toast.classList.add('animate-zoom-center');
+            setTimeout(() => {
+                toast.classList.remove('animate-zoom-center');
+                toast.classList.add('animate-zoom-out');
+                setTimeout(() => { toast.classList.add('hidden'); }, 200); 
+            }, 2500);
+        }
+
+        async function checkScam() {
+            const file = document.getElementById('imageInput').files[0];
+            const hp = document.getElementById('honeypot_field').value;
+            if(!file) return showToast("Pilih fotonya dulu ya!");
+            
+            const btn = document.getElementById('btnCek');
+            btn.disabled = true; 
+            btn.innerHTML = `<span class="material-symbols-outlined animate-spin">sync</span> MENGANALISIS...`;
+
+            const formData = new FormData();
+            formData.append('image', file);
+            formData.append('honeypot_field', hp);
+
+            try {
+                const res = await fetch('/analyze', { method: 'POST', body: formData });
+                displayResult(await res.json());
+            } catch(e) { showToast("Server error!"); } 
+            finally {
+                btn.disabled = false; 
+                btn.innerHTML = `<span class="material-symbols-outlined">analytics</span> Analisis Sekarang`;
+            }
+        }
+
+        async function checkLinkScam() {
+            const url = document.getElementById('urlInput').value;
+            const hp = document.getElementById('honeypot_field').value;
+            if(!url) return showToast("Masukkan URL!");
+            
+            const btn = document.getElementById('btnCekLink');
+            btn.disabled = true; 
+            btn.innerHTML = `<span class="material-symbols-outlined animate-spin">progress_activity</span> MEMBEDAH...`;
+
+            try {
+                const res = await fetch('/analyze-link', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ url, honeypot_field: hp })
+                });
+                displayResult(await res.json());
+            } catch(e) { showToast("Server error!"); } 
+            finally {
+                btn.disabled = false; 
+                btn.innerHTML = `<span class="material-symbols-outlined">travel_explore</span> Periksa Link`;
+            }
+        }
+
+        function openInfoModal(type) {
+            const modal = document.getElementById('infoModal');
+            const title = document.getElementById('modalTitle');
+            const content = document.getElementById('modalContent');
+            
+            if(type === 'privacy') {
+                title.innerText = "Privacy Policy";
+                content.innerHTML = `
+                    <div class="space-y-4">
+                        <p><strong>Terakhir Diperbarui: 26 Februari 2026</strong></p>
+                        <p>Platform <strong>AwasKetipu.id</strong> berkomitmen melindungi privasi pengguna.</p>
+                        <h4 class="font-bold text-slate-900 dark:text-white uppercase">Data yang Kami Proses</h4>
+                        <p>Kami memproses tangkapan layar chat atau URL untuk analisis keamanan real-time melalui AI Meta Llama.</p>
+                        <h4 class="font-bold text-slate-900 dark:text-white uppercase">Keamanan Data</h4>
+                        <p>Data tidak disimpan secara permanen di server dan dihapus otomatis setelah analisis.</p>
+                    </div>`;
+            } else {
+                title.innerText = "Terms of Service";
+                content.innerHTML = `
+                    <div class="space-y-4">
+                        <h4 class="font-bold text-slate-900 dark:text-white uppercase">1. Fungsi Layanan</h4>
+                        <p>Layanan untuk tujuan edukasi. Analisis AI bukan jaminan hukum 100%.</p>
+                        <h4 class="font-bold text-slate-900 dark:text-white uppercase">2. Batasan Tanggung Jawab</h4>
+                        <p>FIGHTBACK AILABS tidak bertanggung jawab atas kerugian dari keputusan pengguna.</p>
+                        <h4 class="font-bold text-slate-900 dark:text-white uppercase">3. Penggunaan</h4>
+                        <p>Dilarang menggunakan platform untuk menyerang pihak lain secara sengaja.</p>
+                    </div>`;
+            }
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; 
+        }
+
+        function closeInfoModal() {
+            const modal = document.getElementById('infoModal');
+            modal.classList.add('animate-zoom-out');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                modal.classList.remove('animate-zoom-out');
+                document.body.style.overflow = 'auto'; 
+            }, 200);
+        }
+    </script>
 </body>
 </html>
